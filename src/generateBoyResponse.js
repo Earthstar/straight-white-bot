@@ -1,4 +1,4 @@
 // Given a message, returns a response
 module.exports = function(message) {
-  return "Echo: " + text.substring(0, 200);
+  return "Echo: " + message.substring(0, 200);
 }
