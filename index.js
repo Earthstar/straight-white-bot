@@ -4,8 +4,8 @@ var request = require('request');
 var app = express();
 
 // You MUST change these values, consult the Messenger Platform Getting Started guide
-var verify_token = 'horsesdontknowjack';
-var token = "CAAYirZBMONMYBAAU4URw0ZCJEIrE0GnxIf5a5hHuCv7s36ZBsg8NvRZChxrSieQiYtfwfVPldetZBKimjWFKt1zS4UFPwRRnHeRZBES7OoGrRVMg4qTnKAC4gLq8yjxOUiHudahecj81etuKvCIUXXWlvMmhzIZAEOmwaZBVfRZAkdxa5yYWl53hJwOd5vvRsY1tpZCYoZBOXGp2wZDZD";
+var verify_token = process.env.VERIFY_TOKEN;
+var token = process.env.PAGE_ACCESS_TOKEN;
 
 var PORT = process.env.PORT || 1337;
 
