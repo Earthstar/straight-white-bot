@@ -7,6 +7,8 @@ var app = express();
 var verify_token = 'horsesdontknowjack';
 var token = "CAAYirZBMONMYBAAU4URw0ZCJEIrE0GnxIf5a5hHuCv7s36ZBsg8NvRZChxrSieQiYtfwfVPldetZBKimjWFKt1zS4UFPwRRnHeRZBES7OoGrRVMg4qTnKAC4gLq8yjxOUiHudahecj81etuKvCIUXXWlvMmhzIZAEOmwaZBVfRZAkdxa5yYWl53hJwOd5vvRsY1tpZCYoZBOXGp2wZDZD";
 
+var PORT = process.env.PORT || 1337;
+
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -45,9 +47,9 @@ app.post('/webhook/', function (req, res) {
 
 });
 
-app.listen(1337, function () {
+app.listen(PORT, function () {
 
-    console.log('Facebook Messenger echoing bot started on port 1337!');
+    console.log('Facebook Messenger echoing bot started on port:' + PORT);
 
 });
 
