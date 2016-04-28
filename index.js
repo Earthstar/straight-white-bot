@@ -4,8 +4,8 @@ var request = require('request');
 var app = express();
 
 // You MUST change these values, consult the Messenger Platform Getting Started guide
-var verify_token = 'superdupersecrettokenyay';
-var token = "43dff234lKedYBvMKfiKbonmbwaYUuGmBtmKtoJ8b3YxgPKOJpeNNLLIWxpJAqYSyorgQFQclU59IkYBXzaFASIFYOUREADTHISYOUAREAWESOMEOh4xh36szaxgysl2u7gP1xNexpLiLkOhiE2wZZdqlm9GgyouQAwv2ZPoUoBnJMrpqlqoMdvgoPMbfImbNkxGsISPhbsTzs4ps3d14";
+var verify_token = 'horsesdontknowjack';
+var token = "CAAYirZBMONMYBAAU4URw0ZCJEIrE0GnxIf5a5hHuCv7s36ZBsg8NvRZChxrSieQiYtfwfVPldetZBKimjWFKt1zS4UFPwRRnHeRZBES7OoGrRVMg4qTnKAC4gLq8yjxOUiHudahecj81etuKvCIUXXWlvMmhzIZAEOmwaZBVfRZAkdxa5yYWl53hJwOd5vvRsY1tpZCYoZBOXGp2wZDZD";
 
 app.use(bodyParser.json());
 
