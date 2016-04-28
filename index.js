@@ -1,6 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+
+var generateBoyResponse = require('./src/generateBoyResponse');
+
 var app = express();
 
 // You MUST change these values, consult the Messenger Platform Getting Started guide
@@ -39,7 +42,7 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
 
-            sendTextMessage(sender, "Echo: " + text.substring(0, 200));
+            sendTextMessage(sender, generateBoyResponse(text));
         }
     }
 
