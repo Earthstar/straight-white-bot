@@ -34,5 +34,14 @@ def get_image_name(url):
     directory, file = os.path.split(path)
     return file
 
-image_urls = get_image_urls_on_page(1)
-load_image(image_urls[0])
+def main():
+    hasImages = True
+    index = 1
+    while hasImages:
+        print 'On page: ' + str(index)
+        image_urls = get_image_urls_on_page(index)
+        if len(image_urls) == 0:
+            hasImages = False
+        for image_url in image_urls:
+            load_image(image_url)
+        index += 1
