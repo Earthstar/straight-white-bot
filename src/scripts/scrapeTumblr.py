@@ -36,12 +36,16 @@ def get_image_name(url):
 
 def main():
     hasImages = True
-    index = 1
+    index = 376
     while hasImages:
         print 'On page: ' + str(index)
         image_urls = get_image_urls_on_page(index)
         if len(image_urls) == 0:
             hasImages = False
         for image_url in image_urls:
-            load_image(image_url)
+            print image_url
+            if '.jpg' in image_url:
+                load_image(image_url)
         index += 1
+
+main()
