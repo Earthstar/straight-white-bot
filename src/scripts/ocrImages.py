@@ -32,6 +32,9 @@ def is_color_in_row(pixel_access, width, y, color_def):
             return True
     return False
 
+def is_swb_color_in_row(pixel_access, width, y):
+    return is_color_in_row(pixel_access, width, y, is_swb_color)
+
 image = Image.open("screenshots/1ttp39.jpg")
 width, height = image.size
 pixel_access = image.load()
@@ -45,22 +48,18 @@ search_mode = None
 
 # y increases from top to bottom of image
 lower_y = None
-upper_y = None
-# list of tuples of (lower_y, upper_y)
+# list of tuples of (lower_y, upper y)
 image_band_dimensions = []
 for y in xrange(height):
     if search_mode == None:
-        if (is_color_in_row(pixel_access, width, y, is_swb_color)):
-            print "start of swb band"
+        if (is_swb_color_in_row(pixel_access, width, y)):
             lower_y = y
             search_mode = 'swb'
             continue
     if search_mode == "swb":
-        if (not is_color_in_row(pixel_access, width, y, is_swb_color)):
-            print "End of swb band"
-            upper_y = y
+        if (not is_swb_color_in_row(pixel_access, width, y)):
             search_mode = None
-            image_band_dimensions.append((lower_y, upper_y))
+            image_band_dimensions.append((lower_y, y))
             continue
 
 image_bands = []
