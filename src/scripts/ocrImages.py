@@ -47,7 +47,7 @@ search_mode = None
 lower_y = None
 upper_y = None
 # list of tuples of (lower_y, upper_y)
-image_slices = []
+image_band_dimensions = []
 for y in xrange(height):
     if search_mode == None:
         if (is_color_in_row(pixel_access, width, y, is_swb_color)):
@@ -60,14 +60,14 @@ for y in xrange(height):
             print "End of swb band"
             upper_y = y
             search_mode = None
-            image_slices.append((lower_y, upper_y))
+            image_band_dimensions.append((lower_y, upper_y))
             continue
 
-for band in image_slices:
-    box = (0, band[0], width, band[1])
+image_bands = []
+for band_dimension in image_band_dimensions:
+    box = (0, band_dimension[0], width, band_dimension[1])
     region = image.crop(box)
-    region.show()
+    image_bands.append(region)
 
-
-# print pytesseract.image_to_string(image)
-
+for band in image_bands:
+    print pytesseract.image_to_string(band)
