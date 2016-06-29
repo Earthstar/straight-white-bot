@@ -10,7 +10,14 @@ def is_swb_color(color_tuple):
     r, g, b = color_tuple
     return r == 231 and g == 230 and b == 235
 
-# 43, 140, 247
+def is_recipient_color(color_tuple):
+    '''
+    color_tuple - a length 3 tuple of RGB colors
+    returns True if the color corresponds to the color of the "recipient" correspondent
+    or 43, 140, 247
+    '''
+    r, g, b = color_tuple
+    return r == 43 and g == 140 and b == 247
 
 image = Image.open("screenshots/1ttp39.jpg")
 width, height = image.size
@@ -21,6 +28,10 @@ for h in xrange(height):
         rgb_pixel = pixel_access[w, h]
         if is_swb_color(rgb_pixel):
             print "Found swb pixel"
+            print w, h
+            break
+        if is_recipient_color(rgb_pixel):
+            print "Found recipient pixel"
             print w, h
             break
 
