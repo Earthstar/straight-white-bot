@@ -60,8 +60,13 @@ for y in xrange(height):
             print "End of swb band"
             upper_y = y
             search_mode = None
-            print (lower_y, upper_y)
+            image_slices.append((lower_y, upper_y))
             continue
+
+for band in image_slices:
+    box = (0, band[0], width, band[1])
+    region = image.crop(box)
+    region.show()
 
 
 # print pytesseract.image_to_string(image)
