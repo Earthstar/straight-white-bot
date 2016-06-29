@@ -19,21 +19,49 @@ def is_recipient_color(color_tuple):
     r, g, b = color_tuple
     return r == 43 and g == 140 and b == 247
 
+def is_color_in_row(pixel_access, width, y, color_def):
+    '''
+    pixel_access - loaded image that can be accessed by pixel
+    width - width of image
+    y - row to search
+    color_def - function to identify color
+    '''
+    for x in xrange(width):
+        rgb_pixel = pixel_access[x, y]
+        if color_def(rgb_pixel):
+            return True
+    return False
+
 image = Image.open("screenshots/1ttp39.jpg")
 width, height = image.size
-
 pixel_access = image.load()
-for h in xrange(height):
-    for w in xrange(width):
-        rgb_pixel = pixel_access[w, h]
-        if is_swb_color(rgb_pixel):
-            print "Found swb pixel"
-            print w, h
-            break
-        if is_recipient_color(rgb_pixel):
-            print "Found recipient pixel"
-            print w, h
-            break
+
+# When searching the image, either we haven't found a band, or we're in a swb color band
+# or we're in a recipient color band
+# possible values are None, "swb" and "recipient"
+search_mode = None
+
+# it's a goddamned state machine
+
+# y increases from top to bottom of image
+lower_y = None
+upper_y = None
+# list of tuples of (lower_y, upper_y)
+image_slices = []
+for y in xrange(height):
+    if search_mode == None:
+        if (is_color_in_row(pixel_access, width, y, is_swb_color)):
+            print "start of swb band"
+            lower_y = y
+            search_mode = 'swb'
+            continue
+    if search_mode == "swb":
+        if (not is_color_in_row(pixel_access, width, y, is_swb_color)):
+            print "End of swb band"
+            upper_y = y
+            search_mode = None
+            print (lower_y, upper_y)
+            continue
 
 
 # print pytesseract.image_to_string(image)
