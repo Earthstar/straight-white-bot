@@ -38,6 +38,8 @@ app.post('/webhook/', function (req, res) {
     var senderId = event.sender.id;
 
     if (event.message && event.message.text) {
+      console.log('in POST webhook');
+      console.log(event.message.text);
       var text = event.message.text;
       sendTextMessage(senderId, generateBoyResponse(text));
     }
