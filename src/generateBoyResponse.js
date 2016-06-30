@@ -14,6 +14,9 @@ function getSenderState(senderId) {
   return senderState;
 }
 
+function setSenderState(senderId, state) {
+  senderStateDict[senderId] = state;
+}
 
 var hopefulResponses = [
   'tits or gtfo',
@@ -32,8 +35,24 @@ function getRandomItemFromList(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
+var negativeWords = ['no', 'not', 'nope'];
+function isMessageNegative(message) {
+  var messageWords = message.split(' ');
+  for (var i = 0; i < negativeWords.length; i++) {
+    var negativeWord = negativeWords[i];
+    if (messageWords.indexOf(negativeWord) >= 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // Given a message, returns a response
 module.exports = function(senderId, message) {
+  if (isMessageNegative(message)) {
+    setSenderState(senderId, AGGRESSIVE_STATE);
+  }
+
   var senderState = getSenderState(senderId);
   if (senderState === HOPEFUL_STATE) {
     return getRandomItemFromList(hopefulResponses);
