@@ -24,6 +24,7 @@ function getRandomItemFromList(list) {
 
 var negativeWords = ['no', 'not', 'nope'];
 function isMessageNegative(message) {
+  console.log(message);
   var messageWords = message.split(' ');
   for (var i = 0; i < negativeWords.length; i++) {
     var negativeWord = negativeWords[i];
