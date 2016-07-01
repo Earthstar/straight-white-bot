@@ -18,6 +18,12 @@ function setSenderState(senderId, state) {
   senderStateDict[senderId] = state;
 }
 
+// Clear state of sender periodically
+setInterval(function() {
+  console.log('Clearing sender state');
+  senderStateDict = {};
+}, 10 * 1000);
+
 module.exports = {
   getSenderState: getSenderState,
   setSenderState: setSenderState
