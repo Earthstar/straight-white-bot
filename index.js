@@ -49,22 +49,6 @@ app.post('/webhook/', function (req, res) {
     });
   }
 
-  // var messaging_events = req.body.entry[0].messaging;
-  // console.log(messaging_events);
-
-  // for (var i = 0; i < messaging_events.length; i++) {
-
-  //   var event = req.body.entry[0].messaging[i];
-  //   var senderId = event.sender.id;
-
-  //   if (event.message && event.message.text) {
-  //     console.log('in POST webhook');
-  //     console.log(event.message.text);
-  //     var text = event.message.text;
-  //     sendTextMessage(senderId, generateBoyResponse(text));
-  //   }
-  // }
-
   res.sendStatus(200);
 
 });
@@ -81,12 +65,12 @@ function handleMessageEvent(event) {
   var messageText = message.text;
 
   // echo for now
-  sendTextMessage(senderId, messageText);
+  var textMessage = formatTextMessage(senderId, messageText);
+  callSendAPI(textMessage);
 }
 
-// The recipient of the message will be the user who 'sent' the message
-function sendTextMessage(recipientId, messageText) {
-  var messageData = {
+function formatTextMessage(recipientId, messageText) {
+  return {
     recipient: {
       id: recipientId
     },
@@ -94,8 +78,6 @@ function sendTextMessage(recipientId, messageText) {
       text: messageText
     }
   };
-
-  callSendAPI(messageData);
 }
 
 function callSendAPI(messageData) {
@@ -114,33 +96,7 @@ function callSendAPI(messageData) {
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
-      // console.error(response);
       console.error(error);
     }
   });
 }
-
-// function sendTextMessage(senderId, text) {
-//   var messageData = {
-//     text: text
-//   };
-
-//   request({
-//     url: 'https://graph.facebook.com/v2.6/me/messages',
-//     qs: {access_token: token},
-//     method: 'POST',
-//     json: {
-//       recipient: {id: senderId},
-//       message: messageData
-//     }
-//   }, function (error, response) {
-
-//     if (error) {
-//       console.log('Error sending message: ', error);
-//     } else if (response.body.error) {
-//       console.log('Error: ', response.body.error);
-//     }
-
-//   });
-
-// }
