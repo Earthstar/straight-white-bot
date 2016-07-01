@@ -81,7 +81,7 @@ function handleMessageEvent(event) {
   var messageText = message.text;
 
   // echo for now
-  sendTextMessage(messageText);
+  sendTextMessage(senderId, messageText);
 }
 
 // The recipient of the message will be the user who 'sent' the message
@@ -114,7 +114,7 @@ function callSendAPI(messageData) {
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
-      console.error(response);
+      // console.error(response);
       console.error(error);
     }
   });
