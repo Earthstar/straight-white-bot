@@ -64,7 +64,7 @@ function handleMessageEvent(event) {
   // for now, only handle text messages
   var messageText = message.text;
 
-  var botResponse = generateBoyResponse(messageText);
+  var botResponse = generateBoyResponse(senderId, messageText);
   var textMessage = formatTextMessage(senderId, botResponse);
   callSendAPI(textMessage);
 }
