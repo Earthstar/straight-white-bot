@@ -20,30 +20,45 @@ app.get('/', function (req, res) {
 
 app.get('/webhook/', function (req, res) {
 
-  if (req.query['hub.verify_token'] === verify_token) {
-    res.send(req.query['hub.challenge']);
+  if (req.query['hub.mode'] === 'subscribe' &&
+    req.query['hub.verify_token'] === verify_token) {
+    console.log("Validating webhook");
+    res.status(200).send(req.query['hub.challenge']);
+  } else {
+    console.error("Failed validation. Make sure the validation tokens match.");
+    res.sendStatus(403);
   }
-
-  res.send('Error, wrong validation token');
-
 });
 
 app.post('/webhook/', function (req, res) {
-  var messaging_events = req.body.entry[0].messaging;
-  console.log(messaging_events);
+  var data = req.body;
 
-  for (var i = 0; i < messaging_events.length; i++) {
-
-    var event = req.body.entry[0].messaging[i];
-    var senderId = event.sender.id;
-
-    if (event.message && event.message.text) {
-      console.log('in POST webhook');
-      console.log(event.message.text);
-      var text = event.message.text;
-      sendTextMessage(senderId, generateBoyResponse(text));
-    }
+  // Make sure this is a page subscription
+  if (data.object == 'page') {
+    // Iterate over each entry
+    // There may be multiple if batched
+    data.entry.forEach(function(pageEntry) {
+      pageEntry.messaging.forEach(function(messagingEvent) {
+        console.log(messagingEvent);
+      });
+    });
   }
+
+  // var messaging_events = req.body.entry[0].messaging;
+  // console.log(messaging_events);
+
+  // for (var i = 0; i < messaging_events.length; i++) {
+
+  //   var event = req.body.entry[0].messaging[i];
+  //   var senderId = event.sender.id;
+
+  //   if (event.message && event.message.text) {
+  //     console.log('in POST webhook');
+  //     console.log(event.message.text);
+  //     var text = event.message.text;
+  //     sendTextMessage(senderId, generateBoyResponse(text));
+  //   }
+  // }
 
   res.sendStatus(200);
 
