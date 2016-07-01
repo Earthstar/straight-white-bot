@@ -10,11 +10,27 @@ var hopefulResponses = [
   'show boobs',
   'gimme kiss',
   'pleas?',
-  'ur hot'
+  'ur hot',
+  '3some?',
+  ';)',
+  'u want in on this?',
+  '8==>',
+  'dtf?',
+  'hey sexy',
+  'hot mama',
+  'call me daddy',
+  'hey',
+  'send nudes',
+  'pics?'
 ];
 
 var aggresiveResponses = [
-  '*THREAT OF SEXUAL VIOLENCE*'
+  '*THREAT OF SEXUAL VIOLENCE*',
+  '*ENTITLED COMMENT*',
+  '*UNINFORMED DESCRIPTION OF FEMALE GENITALIA*',
+  '*THREAT OF PHYSICAL VIOLENCE*',
+  '*GENDERED SLUR*',
+  '*MISOGYNY*'
 ];
 
 

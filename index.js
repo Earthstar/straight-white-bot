@@ -68,7 +68,7 @@ function handleMessageEvent(event) {
   if (messageText) {
     botResponse = generateBoyResponse(senderId, messageText);
   } else if (messageAttachments) {
-    botResponse = 'thats hot';
+    botResponse = 'thats hot. more?';
   }
 
   var textMessage = formatTextMessage(senderId, botResponse);
