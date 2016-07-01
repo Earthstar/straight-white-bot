@@ -74,5 +74,3 @@ module.exports = function(senderId, message) {
     return 'Sender does not have a valid state: ' + senderState;
   }
 };
-
-module.exports = isMessageNegative;
