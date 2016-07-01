@@ -29,9 +29,8 @@ app.get('/webhook/', function (req, res) {
 });
 
 app.post('/webhook/', function (req, res) {
-  console.log(req);
-
   var messaging_events = req.body.entry[0].messaging;
+  console.log(messaging_events);
 
   for (var i = 0; i < messaging_events.length; i++) {
 
