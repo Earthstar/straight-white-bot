@@ -61,10 +61,16 @@ app.listen(PORT, function () {
 function handleMessageEvent(event) {
   var senderId = event.sender.id;
   var message = event.message;
-  // for now, only handle text messages
   var messageText = message.text;
+  var messageAttachments = message.attachments;
 
-  var botResponse = generateBoyResponse(senderId, messageText);
+  var botResponse;
+  if (messageText) {
+    botResponse = generateBoyResponse(senderId, messageText);
+  } else if (messageAttachments) {
+    botResponse = 'thats hot';
+  }
+
   var textMessage = formatTextMessage(senderId, botResponse);
   callSendAPI(textMessage);
 }

@@ -24,7 +24,6 @@ function getRandomItemFromList(list) {
 
 var negativeWords = ['no', 'not', 'nope'];
 function isMessageNegative(message) {
-  console.log(message);
   var messageWords = message.split(' ');
   for (var i = 0; i < negativeWords.length; i++) {
     var negativeWord = negativeWords[i];
@@ -37,6 +36,10 @@ function isMessageNegative(message) {
 
 // Given a message, returns a response
 module.exports = function(senderId, message) {
+  if (!message) {
+    return '';
+  }
+
   if (isMessageNegative(message)) {
     setSenderState(senderId, AGGRESSIVE_STATE);
   }
