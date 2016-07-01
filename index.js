@@ -102,6 +102,7 @@ function callSendAPI(messageData) {
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
+      console.error('Response status: ', response.statusCode);
       console.error(error);
     }
   });
