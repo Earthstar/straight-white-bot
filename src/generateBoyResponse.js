@@ -39,11 +39,16 @@ function getRandomItemFromList(list) {
 }
 
 var negativeWords = ['no', 'not', 'nope'];
+
 function isMessageNegative(message) {
   var messageWords = message.split(' ');
   for (var i = 0; i < negativeWords.length; i++) {
     var negativeWord = negativeWords[i];
-    if (messageWords.indexOf(negativeWord) >= 0) {
+    var negativeWordInMessage = messageWords.find(function(messageWord) {
+      return negativeWord.toUpperCase() === messageWord.toUpperCase();
+    });
+    console.log(negativeWordInMessage);
+    if (!!negativeWordInMessage) {
       return true;
     }
   }
@@ -69,3 +74,5 @@ module.exports = function(senderId, message) {
     return 'Sender does not have a valid state: ' + senderState;
   }
 };
+
+module.exports = isMessageNegative;

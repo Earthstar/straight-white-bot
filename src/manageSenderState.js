@@ -20,7 +20,6 @@ function setSenderState(senderId, state) {
 
 // Clear state of sender periodically
 setInterval(function() {
-  console.log('Clearing sender state');
   senderStateDict = {};
 }, 10 * 1000);
 
