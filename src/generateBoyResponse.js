@@ -26,7 +26,7 @@ var hopefulResponses = [
 
 var aggresiveResponses = [
   '*THREAT OF SEXUAL VIOLENCE*',
-  '*ENTITLED COMMENT*',
+  '*ENTITLEMENT*',
   '*UNINFORMED DESCRIPTION OF FEMALE GENITALIA*',
   '*THREAT OF PHYSICAL VIOLENCE*',
   '*GENDERED SLUR*',
