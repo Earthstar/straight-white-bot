@@ -40,7 +40,6 @@ app.post('/webhook/', function (req, res) {
     data.entry.forEach(function(pageEntry) {
       pageEntry.messaging.forEach(function(messagingEvent) {
         if (messagingEvent.message) {
-          console.log(messagingEvent);
           handleMessageEvent(messagingEvent);
         } else {
           console.log("Received messaging event that isn't handled", messagingEvent);

@@ -57,7 +57,6 @@ function isMessageNegative(message) {
     var negativeWordInMessage = messageWords.find(function(messageWord) {
       return negativeWord.toUpperCase() === messageWord.toUpperCase();
     });
-    console.log(negativeWordInMessage);
     if (!!negativeWordInMessage) {
       return true;
     }
