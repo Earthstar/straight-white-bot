@@ -12,4 +12,4 @@ Data sent to this app is not accessible to anyone except the app maintainer unde
 
 ## Updates
 
-Updates to the TOS, etc. will be posted to the [Straight White Boy Simulator](https://www.facebook.com/straightwhiteboy) page.
+Updates to the privacy policy, etc. will be posted to the [Straight White Boy Simulator](https://www.facebook.com/straightwhiteboy) page.
